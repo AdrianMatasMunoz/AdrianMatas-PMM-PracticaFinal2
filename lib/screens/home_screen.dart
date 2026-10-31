@@ -9,7 +9,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Persona persona = Persona.create("Adrián Matas Muñoz", "inferno301ut@gmail.com", DateTime(2007, 12, 4));
+  Persona persona = Persona();
 
   @override
   Widget build(BuildContext context) {

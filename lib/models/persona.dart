@@ -1,7 +1,7 @@
 final RegExp emailRegExp = RegExp("^\\w+@\\w+\\.\\w+\$", multiLine: true);
 
 class Persona {
-  String fullName = "";
+  String fullName = "John Doe";
   String _email = "abc@def.com";
   DateTime _birthDate = DateTime(2000);
 
@@ -26,4 +26,7 @@ class Persona {
     }
     _birthDate = value;
   }
+
+  String get firstName => fullName.split(" ")[0];
+  String get firstSurname => fullName.split(" ")[1];
 }
