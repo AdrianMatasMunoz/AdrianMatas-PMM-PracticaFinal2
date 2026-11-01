@@ -1,3 +1,7 @@
-# practica_final_2
+# Practica Final 2 PMM
 
-A new Flutter project.
+Adrián Matas Muñoz
+
+Grup IFC32C
+
+Curs 2026 - 2027
