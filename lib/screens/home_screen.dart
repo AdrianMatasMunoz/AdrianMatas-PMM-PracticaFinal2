@@ -51,9 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(height: 3,),
             TextButton(
-              onPressed: () {
-                print("Test 2");
-              },
+              onPressed: () => Navigator.pushNamed(context, "/widget"),
               child: Text("Explore Widget Showcase")
             )
           ],
