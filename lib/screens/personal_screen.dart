@@ -55,110 +55,113 @@ class _PersonalScreenState extends State<PersonalScreen> {
       appBar: AppBar(
         title: Text("${persona.firstSurname} - Edit Profile"),
       ),
-      body: Column(
-        mainAxisAlignment: .center,
-        mainAxisSize: .max,
-        children: [
-          TextField(
-            textCapitalization: .words,
-            controller: _firstNameController,
-            decoration: InputDecoration(
-              suffixIcon: Icon(Icons.person_rounded),
-              hintText: "First name",
-              labelText: "First name",
-              errorText: _firstName.isEmpty ? "Required field" : null,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20)
-              )
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: .center,
+          mainAxisSize: .max,
+          children: [
+            SizedBox(height: 10,),
+            TextField(
+              textCapitalization: .words,
+              controller: _firstNameController,
+              decoration: InputDecoration(
+                suffixIcon: Icon(Icons.person_rounded),
+                hintText: "First name",
+                labelText: "First name",
+                errorText: _firstName.isEmpty ? "Required field" : null,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20)
+                )
+              ),
+              onChanged: (String value) => setState(() {
+                _firstName = value;
+              }),
             ),
-            onChanged: (String value) => setState(() {
-              _firstName = value;
-            }),
-          ),
-          SizedBox(height: 10,),
-          TextField(
-            textCapitalization: .words,
-            controller: _surnameController,
-            decoration: InputDecoration(
-              suffixIcon: Icon(Icons.person_rounded),
-              hintText: "Surname",
-              labelText: "Surname",
-              errorText: _surname.isEmpty ? "Required field" : null,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20)
-              )
+            SizedBox(height: 10,),
+            TextField(
+              textCapitalization: .words,
+              controller: _surnameController,
+              decoration: InputDecoration(
+                suffixIcon: Icon(Icons.person_rounded),
+                hintText: "Surname",
+                labelText: "Surname",
+                errorText: _surname.isEmpty ? "Required field" : null,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20)
+                )
+              ),
+              onChanged: (String value) => setState(() {
+                _surname = value;
+              })
             ),
-            onChanged: (String value) => setState(() {
-              _surname = value;
-            })
-          ),
-          SizedBox(height: 10,),
-          TextField(
-            textCapitalization: .none,
-            controller: _emailController,
-            decoration: InputDecoration(
-              suffixIcon: Icon(Icons.alternate_email_outlined),
-              hintText: "Email",
-              labelText: "Email",
-              errorText: _email.isEmpty ? "Required field" : (!emailRegExp.hasMatch(_email) ? "Not an email" : null),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20)
-              )
+            SizedBox(height: 10,),
+            TextField(
+              textCapitalization: .none,
+              controller: _emailController,
+              decoration: InputDecoration(
+                suffixIcon: Icon(Icons.alternate_email_outlined),
+                hintText: "Email",
+                labelText: "Email",
+                errorText: _email.isEmpty ? "Required field" : (!emailRegExp.hasMatch(_email) ? "Not an email" : null),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20)
+                )
+              ),
+              keyboardType: .emailAddress,
+              onChanged: (String value) => setState(() {
+                _email = value;
+              })
             ),
-            keyboardType: .emailAddress,
-            onChanged: (String value) => setState(() {
-              _email = value;
-            })
-          ),
-          SizedBox(height: 10,),
-          TextField(
-            obscureText: true,
-            textCapitalization: .none,
-            decoration: InputDecoration(
-              suffixIcon: Icon(Icons.password_rounded),
-              hintText: "Password",
-              labelText: "Password",
-              errorText: _password.isEmpty ? "Required field" : null,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20)
-              )
+            SizedBox(height: 10,),
+            TextField(
+              obscureText: true,
+              textCapitalization: .none,
+              decoration: InputDecoration(
+                suffixIcon: Icon(Icons.password_rounded),
+                hintText: "Password",
+                labelText: "Password",
+                errorText: _password.isEmpty ? "Required field" : null,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20)
+                )
+              ),
+              onChanged: (String value) => setState(() {
+                _password = value;
+              })
             ),
-            onChanged: (String value) => setState(() {
-              _password = value;
-            })
-          ),
-          SizedBox(height: 10,),
-          TextField(
-            enableInteractiveSelection: false,
-            controller: _dateController,
-            decoration: InputDecoration(
-              suffixIcon: Icon(Icons.calendar_month_rounded),
-              hintText: "Birth date",
-              labelText: "Birth date",
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20)
-              )
-            ),
-            onTap: () {
-              _selectDate(context);
-            }
-          ),
-          SizedBox(height: 20,),
-          Text(
-            !_isFormValid() ? "Please correct the form." : "",
-            style: TextStyle(
-              color: Colors.red
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              if(_isFormValid()) {
-                Navigator.pop(context, Persona.create("$_firstName $_surname", _email, _birthDate));
+            SizedBox(height: 10,),
+            TextField(
+              enableInteractiveSelection: false,
+              controller: _dateController,
+              decoration: InputDecoration(
+                suffixIcon: Icon(Icons.calendar_month_rounded),
+                hintText: "Birth date",
+                labelText: "Birth date",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20)
+                )
+              ),
+              onTap: () {
+                _selectDate(context);
               }
-            },
-            child: Text("Save and Return")
-          )
-        ],
+            ),
+            SizedBox(height: 20,),
+            Text(
+              !_isFormValid() ? "Please correct the form." : "",
+              style: TextStyle(
+                color: Colors.red
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                if(_isFormValid()) {
+                  Navigator.pop(context, Persona.create("$_firstName $_surname", _email, _birthDate));
+                }
+              },
+              child: Text("Save and Return")
+            )
+          ],
+        )
       )
     );
   }
