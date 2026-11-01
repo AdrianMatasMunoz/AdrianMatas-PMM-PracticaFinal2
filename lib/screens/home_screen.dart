@@ -17,36 +17,47 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text("DevProfile M3"),
       ),
-      body: Column(
-        mainAxisAlignment: .center,
-        mainAxisSize: .max,
-        children: [
-          Card.outlined(
-            color: Colors.white,
-            shadowColor: Colors.green,
-            elevation: 8,
-            margin: EdgeInsetsGeometry.all(8),
-            child: Center(
-              widthFactor: 2,
-              heightFactor: 2,
-              child: Text(
-                "Name: ${persona.fullName}\nEmail: ${persona.email}\nBirth date: ${persona.birthDate.day}/${persona.birthDate.month}/${persona.birthDate.year}",
-                textAlign: .center,
-              )
+      body: Center(
+        child: Column(
+          mainAxisAlignment: .center,
+          mainAxisSize: .max,
+          children: [
+            Card.outlined(
+              color: Colors.white,
+              shadowColor: Colors.green,
+              elevation: 8,
+              margin: EdgeInsetsGeometry.all(8),
+              child: Center(
+                widthFactor: 2,
+                heightFactor: 2,
+                child: Text(
+                  "Name: ${persona.fullName}\nEmail: ${persona.email}\nBirth date: ${persona.birthDate.day}/${persona.birthDate.month}/${persona.birthDate.year}",
+                  textAlign: .center,
+                )
+              ),
             ),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pushNamed(context, "/personal", arguments: persona),
-            child: Text("Edit Profile"),
-          ),
-          TextButton(
-            onPressed: () {
-              print("Test 2");
-            },
-            child: Text("Explore Widget Showcase")
-          )
-        ],
-      ),
+            SizedBox(height: 15,),
+            TextButton(
+              onPressed: () async{
+                Object? result = await Navigator.pushNamed(context, "/personal", arguments: persona);
+                if(result != null) {
+                  setState(() {
+                    persona = result as Persona;
+                  });
+                }
+              },
+              child: Text("Edit Profile"),
+            ),
+            SizedBox(height: 3,),
+            TextButton(
+              onPressed: () {
+                print("Test 2");
+              },
+              child: Text("Explore Widget Showcase")
+            )
+          ],
+        ),
+      )
     );
   }
 }
