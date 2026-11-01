@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practica_final_2/models/persona.dart';
+import 'package:practica_final_2/utils.dart';
 
 class PersonalScreen extends StatefulWidget {
   const PersonalScreen({super.key});
@@ -31,13 +32,6 @@ class _PersonalScreenState extends State<PersonalScreen> {
     super.dispose();
   }
 
-  String formatDate(DateTime date) {
-    String year = date.year.toString().padLeft(4, '0');
-    String month = date.month.toString().padLeft(2, '0');
-    String day = date.day.toString().padLeft(2, '0');
-    return "$year-$month-$day";
-  }
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -51,7 +45,7 @@ class _PersonalScreenState extends State<PersonalScreen> {
       _emailController.text = _email = persona.email;
       _password = "";
       _birthDate = persona.birthDate;
-      _dateController.text = formatDate(_birthDate);
+      _dateController.text = Utils.formatDate(_birthDate);
     }
   }
 
@@ -180,7 +174,7 @@ class _PersonalScreenState extends State<PersonalScreen> {
     if(selectedDate != null) {
       setState(() {
         _birthDate = selectedDate;
-        _dateController.text = formatDate(_birthDate);
+        _dateController.text = Utils.formatDate(_birthDate);
       });
     }
   }

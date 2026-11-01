@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practica_final_2/models/persona.dart';
+import 'package:practica_final_2/utils.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -31,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 widthFactor: 2,
                 heightFactor: 2,
                 child: Text(
-                  "Name: ${persona.fullName}\nEmail: ${persona.email}\nBirth date: ${persona.birthDate.day}/${persona.birthDate.month}/${persona.birthDate.year}",
+                  "Name: ${persona.fullName}\nEmail: ${persona.email}\nBirth date: ${Utils.formatDate(persona.birthDate)}",
                   textAlign: .center,
                 )
               ),
