@@ -142,6 +142,7 @@ class _PersonalScreenState extends State<PersonalScreen> {
                 )
               ),
               onTap: () {
+                FocusScope.of(context).requestFocus(FocusNode());
                 _selectDate(context);
               }
             ),
